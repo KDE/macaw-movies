@@ -26,6 +26,7 @@
 #include "Application.h"
 #include "MainWindow.h"
 #include "MoviesDebug.h"
+#include <QMediaPlayer>
 //#include "FetchMetadata/FetchMetadata.h"
 
 int main(int argv, char **args)
@@ -34,6 +35,15 @@ int main(int argv, char **args)
     Macaw::moviesDebug_extern.setDebug(true);
 #endif
     Application l_app(argv, args);
+
+    QMediaPlayer *player1 = new QMediaPlayer;
+    QMediaPlayer *player2 = new QMediaPlayer;
+    player1->setMedia(QUrl::fromLocalFile("/home/olivier/Musique/!!!/Louden Up Now/1-01 When The Going Gets Tough, The.mp3"));
+    player2->setMedia(QUrl::fromLocalFile("/home/olivier/Videos_tmp/CERN (HD).mp4"));
+    qDebug()<<player1->metaData("Title").toString();
+    qDebug()<<player2->metaData("Title").toString();
+    //player1->play();
+    qDebug()<<player1->availableMetaData();
 
     QCommandLineParser l_parser;
     l_parser.setApplicationDescription("DESCRIPTION");
